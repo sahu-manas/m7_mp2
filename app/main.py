@@ -37,7 +37,8 @@ def handle_outliers(df, colm):
     return df
 
 def load_dataset():
-    df = pd.read_csv('heart_failure_clinical_records_dataset.csv')
+    file_name = 'heart_failure_clinical_records_dataset.csv'    
+    df = pd.read_csv(Path(f"{parent}/{file_name}"))
     outlier_colms = ['creatinine_phosphokinase', 'ejection_fraction', 'platelets', 'serum_creatinine', 'serum_sodium']
     df1 = df.copy()
     for colm in outlier_colms:
@@ -50,7 +51,7 @@ data = load_dataset()    # read complete data
 acc_metric = prom.Gauge('patient_survival_prediction', 'Accuracy score')
 f1_metric =  prom.Gauge('patient_survival_f1score', 'F1 score')
 
-loaded_model = joblib.load('xgboost-model.pkl')
+loaded_model = joblib.load(f"{parent}/xgboost-model.pkl")
 
 
 #X = data.iloc[:, :-1].values
