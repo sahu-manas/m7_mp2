@@ -69,7 +69,7 @@ def update_metrics():
     test_features = test_data.iloc[:, :-1].values
     test_target = test_data['DEATH_EVENT'].values
     # Performance on test set
-    y_pred = loaded_model.predict(test_features)['predictions']              # prediction
+    y_pred = loaded_model.predict(test_features)             # prediction
     acc = accuracy_score(test_target, y_pred).round(3)                    # accuracy score
     f1 = f1_score(test_target, y_pred).round(3)                           # F1 score
     
